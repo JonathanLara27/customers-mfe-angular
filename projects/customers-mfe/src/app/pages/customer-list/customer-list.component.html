@@ -1,1 +1,14 @@
-<p>customer-list works!</p>,
+<p>customer-list works!</p>
+
+<p>Page : {{ page() }}</p>
+<p>Page Size : {{ pageSize() }}</p>
+
+
+<app-table [dataSource]="customers()" [columns]="columnsCustomers()" [isLoading]="isLoading()"
+    [buttonColumn]="actionsCustomers()"></app-table>
+<mat-paginator
+    [showFirstLastButtons]="true"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    [length]="total()"
+    class="border-radius20">
+</mat-paginator>
