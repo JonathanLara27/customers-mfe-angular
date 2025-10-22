@@ -99,6 +99,56 @@ Una vez ambos servidores estén activos:
 
 ---
 
+## Mock API con json-server (desarrollo)
+
+Para desarrollo y pruebas se incluye un mock API basado en `json-server`.
+
+- Archivo de datos: `mock/db.json` (contiene 50 clientes de ejemplo).
+- Servidor helper: `mock/server.js` — arranca json-server como módulo y aplica un middleware para simular latencia.
+
+### Instalar dependencias
+
+Desde la raíz del proyecto:
+
+```powershell
+npm install
+```
+
+### Ejecutar el mock API
+
+```powershell
+npm run mock-api
+```
+
+Esto arrancará el mock en `http://localhost:3000` y aplicará un delay por defecto de 1000 ms.
+
+### Cambiar el delay
+
+Puedes personalizar el delay con la variable de entorno `MOCK_DELAY` (milisegundos). En PowerShell:
+
+```powershell
+$env:MOCK_DELAY=200; npm run mock-api
+```
+
+### Endpoints útiles
+
+- `GET /customers` — lista completa
+- `GET /customers?_page=1&_limit=10` — paginado (json-server devuelve header `X-Total-Count` con el total)
+- `GET /customers/1` — obtener por id
+- `POST /customers`, `PUT /customers/1`, `PATCH /customers/1`, `DELETE /customers/1`
+
+### Usar el mock desde el MFE
+
+Se creó `proxy.conf.json` que mapea `/api` a `http://localhost:3000`. Para servir el MFE en desarrollo con el proxy:
+
+```powershell
+npm run start:customers
+```
+
+Las llamadas a `/api/customers` se redirigen al mock automáticamente.
+
+---
+
 ## 🧰 Comandos útiles
 
 ### Crear un nuevo componente
