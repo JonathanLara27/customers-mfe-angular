@@ -7,6 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "start:host": "ng serve host",
+    "start:customers": "ng serve customers-mfe --configuration development --proxy-config proxy.conf.json",
+    "mock-api": "node mock/server.js",
     "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
   },
   "private": true,
@@ -38,6 +41,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ngx-build-plus": "^19.0.0",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "json-server": "^0.17.3"
   }
 }
