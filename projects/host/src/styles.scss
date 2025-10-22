@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+// Define the theme object.
+$front-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+      // primary: $_primary,
+      // tertiary: $_tertiary,
+      primary: mat.$azure-palette,
+      tertiary: mat.$red-palette,
+      // warn: mat.$red-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+:root {
+  @include mat.all-component-themes($front-theme);
+}
+
