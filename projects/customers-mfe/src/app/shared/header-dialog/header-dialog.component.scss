@@ -1,0 +1,22 @@
+.header-dialog {
+  background-color: #ededed !important;
+  color: black !important;
+}
+.container-header-dialog{
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
