@@ -1,0 +1,22 @@
+<section>
+    <app-header-dialog [title]="title()"  (close)="close()"></app-header-dialog>
+
+    <form [formGroup]="formCustomer" class="container-form" >
+        @for (item of iteratorForm(); track $index) {
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>{{item.label}}</mat-label>
+                <input [type]="item.type" matInput [formControlName]="item.formControlName" [placeholder]="item.placeholder">
+                @if (isValidField(item.formControlName,formCustomer)) {
+                    <mat-error>
+                        {{ getFieldErrors(item.formControlName,formCustomer) }}
+                    </mat-error>
+                }
+            </mat-form-field>
+        }
+    </form>
+
+    <mat-dialog-actions>
+        <app-footer-dialog [title]='titleButton()' [buttonDisabled]="formCustomer.invalid" (submit)="submitForm()"></app-footer-dialog>
+    </mat-dialog-actions>
+
+</section>
