@@ -1,0 +1,1 @@
+export const RAPID_SEARCH_PLACEHOLDER = 'Búsqueda Rápida...';

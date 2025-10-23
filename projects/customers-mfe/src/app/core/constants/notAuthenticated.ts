@@ -1,0 +1,1 @@
+export const NOT_AUTHENTICATED_MESSAGE = 'No estas autenticado. Por favor, inicia sesión para continuar.';
