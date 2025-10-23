@@ -1,0 +1,43 @@
+<main class="bg-gray-10">
+    <section class="container-page">
+        <app-header-page [title]="title() + ' Tabla'" [subtitle]="subtitle()"></app-header-page>
+
+        <section class="toggle-view-container">
+            @if (currentUser()) {
+                <button class="mr-2 ml-2" mat-raised-button (click)="logout()"> {{titleButtonLogout()}} </button>
+            }@else {
+                <button class="mr-2 ml-2" mat-raised-button (click)="login()"> {{titleButtonLogin()}} </button>
+            }
+            <button class="mr-2 ml-2" mat-raised-button (click)="navigateToListView()">Ir a la lista</button>
+        </section>
+
+        <section class="mr-4 ml-4 position-relative mat-elevation-z8 border-radius-20 bg-white">
+            <div class="p-3">
+                <div class="grid-item flex-responsive justify-content-start" [formGroup]="form">
+                    <mat-form-field appearance="outline">
+                        <mat-label> {{rapidSearchPlaceholder()}} </mat-label>
+                        <input matInput placeholder="Ejemplo: Luis" #input formControlName="search">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="position-relative">
+                <div class="table-floating-btn">
+                    <button mat-icon-button class="button-primary" [matTooltip]="tooltipAddCustomer()"
+                        (click)="openModalCreateCustomer()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+            
+            <app-table [dataSource]="customers()" [columns]="columnsCustomers()" [isLoading]="isLoading()"
+                [buttonColumn]="actionsCustomers()"></app-table>
+            <mat-paginator
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="[5, 10, 25, 50]"
+                [length]="total()"
+                class="border-radius-20">
+            </mat-paginator>
+        </section>
+    </section>
+</main>
