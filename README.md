@@ -227,9 +227,39 @@ Probar la interacción completa entre el **componente**, su **servicio**, y el *
 
 > ✅ Estos tests aseguran que tanto la lógica de negocio (servicios) como la experiencia de usuario (componentes) funcionen correctamente en el MFE.
 
+## 📷 Capturas de la Aplicación
+
+### 🧮 Tabla de Clientes con Búsqueda y Paginación
+
+<img width="974" height="1031" alt="Tabla de clientes con búsqueda" src="https://github.com/user-attachments/assets/123fd36c-abb1-4b75-a00d-635f8577f41f" />
+
+Esta vista muestra una tabla interactiva con:
+
+- Búsqueda rápida por nombre, correo o teléfono.
+- Paginación integrada con Angular Material.
+- Acciones disponibles: **crear**, **editar** y **eliminar** clientes.
+- Navegación protegida mediante un **AuthGuard** (`loginGuard`), accesible solo tras iniciar sesión desde el botón correspondiente.
+
+---
+
+### 📋 Listado de Clientes con Skeleton Loading
+
+<img width="982" height="761" alt="Listado de clientes con skeleton" src="https://github.com/user-attachments/assets/4baf79d0-b4be-4933-8741-62193a08a0b4" />
+
+En esta vista se presenta un listado responsivo de clientes, con:
+
+- Diseño adaptable a distintos tamaños de pantalla.
+- Efecto de carga tipo **skeleton** utilizando el trigger `@defer` de Angular 17+.
+- Visualización rápida y fluida mientras se simula la carga de datos desde el mock API.
+
+---
+
+
+
 
 ## 👨‍💻 Autor
 
 **Jonathan Lara**  
 📅 Octubre 2025  
 🔧 Versión Angular: `19.2.17`
+
