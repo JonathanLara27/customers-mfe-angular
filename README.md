@@ -1,7 +1,7 @@
 # 🧩 Customer Platform – Microfrontend Architecture
 
 Este proyecto implementa una **arquitectura de microfrontends en Angular 19**, conformada por un **Host** y un **Microfrontend (customers-mfe)**.  
-El objetivo de la prueba técnica es **listar, crear y editar clientes** utilizando **Angular Material** y una arquitectura escalable basada en `ApplicationConfig` (sin módulos tradicionales).
+El objetivo de la prueba técnica es **listar, crear y editar clientes** utilizando **Angular Material**  y **Standalone Components**.
 
 ---
 
@@ -27,6 +27,7 @@ customer-platform/
 - **Module Federation** con `@angular-architects/module-federation`
 - **Angular Material**
 - **Vite Dev Server**
+- **Json mock (solo local)**
 - **Standalone Components (sin NgModules)**
 - **Arquitectura Monorepo**
 - **Angular Signals (`computed`, `resource`)**
@@ -38,6 +39,13 @@ customer-platform/
 ---
 
 ## ⚙️ Instalación
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/JonathanLara27/customers-mfe-angular.git
+npm install
+```
 
 Antes de ejecutar, instala las dependencias desde la raíz del monorepo:
 
@@ -69,7 +77,7 @@ Ambos deben ejecutarse al mismo tiempo para que la federación funcione correcta
 ng serve host
 ```
 
-- Servidor: `http://localhost:4200/`
+- URL: [http://localhost:4200](http://localhost:4200)
 
 ### 2. Iniciar el **Microfrontend (customers-mfe)**
 
@@ -77,7 +85,7 @@ ng serve host
 ng serve customers-mfe
 ```
 
-- Servidor: `http://localhost:4201/`
+- URL: [http://localhost:4201](http://localhost:4201)
 
 > ⚠️ Ejecuta **ambos proyectos simultáneamente** para que el host pueda consumir las rutas remotas del microfrontend.
 
@@ -120,12 +128,9 @@ Para desarrollo y pruebas se incluye un mock API basado en `json-server`.
 
 - Archivo de datos: `mock/db.json` (contiene 50 clientes de ejemplo).
 - Servidor helper: `mock/server.js` — arranca json-server como módulo y aplica un middleware para simular latencia.
+- Proxy configurado en `proxy.conf.json` (`/api` → `http://localhost:3000`)
 
 ### Instalar dependencias
-
-```powershell
-npm install
-```
 
 ### Ejecutar el mock API
 
