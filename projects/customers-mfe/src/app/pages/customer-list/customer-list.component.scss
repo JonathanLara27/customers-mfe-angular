@@ -1,3 +1,210 @@
-:host {
-  display: block;
+/* === CONTENEDOR PRINCIPAL === */
+
+.container-items {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.mat-elevation-z8 {
+  box-shadow:
+    0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* === SECCIÓN DE CLIENTES === */
+.customer-list-section {
+  padding: 1.5rem;
+}
+
+.customer-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* === TARJETA DE CLIENTE === */
+.customer-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #fff;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s;
+  cursor: pointer;
+  min-height: 100px;
+  box-sizing: border-box;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+  }
+}
+
+.customer-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.customer-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.customer-email {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.customer-phone {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* === SKELETON === */
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.skeleton-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f2f2f2;
+  min-height: 100px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* === PARTES DEL SKELETON === */
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 1.6s infinite;
+  }
+}
+
+.skeleton-text-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.skeleton-line {
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 1.6s infinite;
+  }
+
+  &.short {
+    width: 50%;
+  }
+
+  &.medium {
+    width: 65%;
+  }
+
+  &.long {
+    width: 80%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .customer-list,
+  .skeleton-container {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-card,
+  .skeleton-item {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .customer-name {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .customer-card,
+  .skeleton-item {
+    padding: 0.75rem;
+  }
+
+  .customer-name {
+    font-size: 0.95rem;
+  }
+
+  .customer-email,
+  .customer-phone {
+    font-size: 0.85rem;
+  }
+}
+
+.toggle-view-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
 }
