@@ -142,7 +142,8 @@ Esto arrancará el mock en `http://localhost:3000` y aplicará un delay por defe
 - Uso de **Signals (`computed`, `resource`)** para la gestión de estado local.
 - Implementación de **rutas lazy-loaded** y **protegidas con guards** simulando autenticación.
 - Uso de **directivas modernas Angular (@for, @if, @defer)**.
-- API simulada mediante **json-server** o interceptores HTTP.
+- API simulada mediante **json-server**, con un **interceptor HTTP** que redirige automáticamente las peticiones hacia la ruta del mock.
+- Configuración dinámica de rutas y endpoints mediante los archivos de **`environments` de Angular**, adaptando el comportamiento según el entorno (`development`, `production`, etc.).
 - Diseño **responsive** y limpio con **Angular Material**.
 - Arquitectura **Module Federation** totalmente funcional.
 
