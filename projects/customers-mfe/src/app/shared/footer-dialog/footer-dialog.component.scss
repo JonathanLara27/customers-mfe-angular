@@ -1,0 +1,31 @@
+.footer-dialog-container {
+  display: flex;
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.button-primary {
+  width: 100%;
+  border: 0px;
+  padding: 12px;
+  border-radius: 5px;
+  color: white;
+  background-color: #e73743;
+}
+
+.button-primary:hover {
+  cursor: pointer;
+  background-color: #d6202c;
+}
+
+.button-disabled {
+  background-color: #c0c0c075;
+  color: #ffffff75;
+  width: 100%;
+  border: 0px;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: not-allowed;
+}
