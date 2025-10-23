@@ -29,6 +29,11 @@ customer-platform/
 - **Vite Dev Server**
 - **Standalone Components (sin NgModules)**
 - **Arquitectura Monorepo**
+- **Angular Signals (`computed`, `resource`)**
+- **Uso de directivas modernas (@for, @if, @defer)**
+- **Lazy Loading en rutas**
+- **Diseño responsivo con Angular Material**
+- **Rutas protegidas simuladas (AuthGuard)**
 
 ---
 
@@ -60,19 +65,13 @@ Ambos deben ejecutarse al mismo tiempo para que la federación funcione correcta
 
 ### 1. Iniciar el **Host**
 
-El host actúa como contenedor principal y carga los microfrontends remotos.
-
 ```bash
 ng serve host
 ```
 
 - Servidor: `http://localhost:4200/`
 
----
-
 ### 2. Iniciar el **Microfrontend (customers-mfe)**
-
-El microfrontend maneja la gestión de clientes (listado, creación y edición).
 
 ```bash
 ng serve customers-mfe
@@ -92,10 +91,26 @@ Una vez ambos servidores estén activos:
 - Esto cargará el microfrontend `customers-mfe` dentro del host.
 
 ### Rutas principales del microfrontend
+
 | Ruta | Descripción |
 |------|--------------|
-| `/customers` | Lista de clientes |
-| `/customers/create` | Formulario de creación de clientes |
+| `/customers/list` | Lista de clientes con skeleton loading y protegido con guard |
+| `/customers/table` | Tabla de clientes con búsqueda rápida y Material Table |
+
+---
+
+## 🔒 Rutas protegidas (sin backend real)
+
+El microfrontend `customers-mfe` implementa una simulación de autenticación utilizando **signals** y un **AuthGuard** (en este caso llamado `loginGuard`) para restringir el acceso a ciertas rutas, incluso sin un backend real.
+
+Este enfoque permite:
+
+- Simular una sesión activa directamente en el frontend.
+- Aplicar control de acceso sin necesidad de un servidor.
+- Demostrar buenas prácticas en arquitectura modular.
+- Gestionar el estado de forma reactiva con **Angular 17**.
+
+Esto simula rutas protegidas sin necesidad de backend, cumpliendo el requerimiento opcional de seguridad local.
 
 ---
 
@@ -107,8 +122,6 @@ Para desarrollo y pruebas se incluye un mock API basado en `json-server`.
 - Servidor helper: `mock/server.js` — arranca json-server como módulo y aplica un middleware para simular latencia.
 
 ### Instalar dependencias
-
-Desde la raíz del proyecto:
 
 ```powershell
 npm install
@@ -122,99 +135,16 @@ npm run mock-api
 
 Esto arrancará el mock en `http://localhost:3000` y aplicará un delay por defecto de 1000 ms.
 
-### Cambiar el delay
-
-Puedes personalizar el delay con la variable de entorno `MOCK_DELAY` (milisegundos). En PowerShell:
-
-```powershell
-$env:MOCK_DELAY=200; npm run mock-api
-```
-
-### Endpoints útiles
-
-- `GET /customers` — lista completa
-- `GET /customers?_page=1&_limit=10` — paginado (json-server devuelve header `X-Total-Count` con el total)
-- `GET /customers/1` — obtener por id
-- `POST /customers`, `PUT /customers/1`, `PATCH /customers/1`, `DELETE /customers/1`
-
-### Usar el mock desde el MFE
-
-Se creó `proxy.conf.json` que mapea `/api` a `http://localhost:3000`. Para servir el MFE en desarrollo con el proxy:
-
-```powershell
-npm run start:customers
-```
-
-Las llamadas a `/api/customers` se redirigen al mock automáticamente.
-
----
-
-## 🧰 Comandos útiles
-
-### Crear un nuevo componente
-```bash
-ng generate component projects/customers-mfe/src/app/pages/customer-detail
-```
-
-### Construir el proyecto
-```bash
-ng build host
-ng build customers-mfe
-```
-
-### Ejecutar pruebas unitarias
-```bash
-ng test
-```
-
 ---
 
 ## 🧠 Notas Técnicas
 
-- Se usa `ApplicationConfig` en lugar de `AppModule` para configurar los providers.
-- `provideAnimations()` habilita las animaciones requeridas por Angular Material.
-- Cada aplicación (host y mfe) tiene su propio `webpack.config.js` con configuraciones específicas de **Module Federation**.
-- **Angular Material** fue instalado en el **host** (proyecto raíz) para compartir estilos y componentes visuales con los microfrontends.
-- El microfrontend `customers-mfe` expone sus rutas a través de:
-  ```js
-  exposes: {
-    './routes': './projects/customers-mfe/src/app/app.routes.ts'
-  }
-  ```
-
----
-
-## 📜 Scripts recomendados (opcional)
-
-Puedes agregar estos comandos a tu `package.json` para simplificar la ejecución:
-
-```json
-"scripts": {
-  "start:host": "ng serve host",
-  "start:customers": "ng serve customers-mfe",
-  "start:all": "concurrently \"ng serve host\" \"ng serve customers-mfe\""
-}
-```
-
-Y luego ejecutar:
-
-```bash
-npm run start:all
-```
-
-> 📦 Requiere instalar `concurrently` si no lo tienes:
-> ```bash
-> npm install concurrently --save-dev
-> ```
-
----
-
-## 📚 Recursos adicionales
-
-- [Angular 19 Standalone APIs](https://angular.dev/guide/standalone-components)
-- [Module Federation en Angular](https://www.angulararchitects.io/guide/module-federation/)
-- [Angular Material](https://material.angular.dev)
-- [Vite Dev Server](https://vitejs.dev/)
+- Uso de **Signals (`computed`, `resource`)** para la gestión de estado local.
+- Implementación de **rutas lazy-loaded** y **protegidas con guards** simulando autenticación.
+- Uso de **directivas modernas Angular (@for, @if, @defer)**.
+- API simulada mediante **json-server** o interceptores HTTP.
+- Diseño **responsive** y limpio con **Angular Material**.
+- Arquitectura **Module Federation** totalmente funcional.
 
 ---
 
