@@ -1,1 +1,17 @@
-<p>confirm-dialog works!</p>,
+<section>
+    <div class="d-block text-center h5 fw-500 mt-3">
+        {{title()}}
+    </div>
+    <mat-dialog-content class="mt-4 mb-4">
+        <p class="text-md text-center"> {{ message() }}</p>
+    </mat-dialog-content>
+    <div class="mr-2 ml-2">
+        <button class="button-main-modal mt-2 mb-2 d-block" (click)="confirm()">
+            {{titleButtonMain()}}
+        </button>
+        <button class="button-secondary-modal mt-2 mb-2 d-block" (click)="close()">
+            {{tittleButtonSecondary()}}
+        </button>
+    </div>
+
+</section>
