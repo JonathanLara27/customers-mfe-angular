@@ -40,4 +40,8 @@ export class ApiCustomerService {
     return this.http.patch<Customer>(`${this.baseUrl}/${id}`, data);
   }
 
+  deleteCustomer(id: number) {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
 }
