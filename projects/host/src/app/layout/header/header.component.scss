@@ -1,0 +1,45 @@
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  background-color: #e5e5e5;
+
+  .menu-button {
+    display: none; 
+  }
+
+  .header-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-toolbar {
+    .menu-button {
+      display: inline-flex; 
+    }
+
+    .header-title {
+      font-size: 1rem;
+      text-align: left;
+      margin-left: 0.5rem;
+    }
+
+    .header-actions {
+      display: none;
+    }
+  }
+}
+
+mat-toolbar {
+  padding: 0 !important; // Elimina el padding predeterminado
+}
