@@ -5,14 +5,10 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActionButtonComponent } from '../action-button/action-button.component';
-import { Internationalization } from '../functions/internationalization';
-const matPaginatorConfig = {
-  pageSizeOptions: [5, 10, 25, 50],
-  showFirstLastButtons: true,
-};
+
 @Component({
   selector: 'app-table',
   standalone: true,
@@ -40,7 +36,7 @@ export class TableComponent {
 
   public buttonColumn = input.required<ButtonColumn>();
 
-  public showAction = signal<boolean[]>([]);
+  // public showAction = signal<boolean[]>([]);
 
   public displayedColumns = computed(() => {
     const cols = this.columns();
@@ -57,35 +53,33 @@ export class TableComponent {
   })
 
   ngOnInit(): void {
-    this.initShowAction();
+    // this.initShowAction();
   }
 
-  private initShowAction(): void {
-    const buttonCol = this.buttonColumn();
-    if (!buttonCol) return;
-    this.showAction.set(this.dataSource().map(row => {
-      return (buttonCol.buttons?.length ?? 0) <= 2;
-    }));
-  }
+  // private initShowAction(): void {
+  //   const buttonCol = this.buttonColumn();
+  //   if (!buttonCol) return;
+  //   this.showAction.set(this.dataSource().map(row => {
+  //     return (buttonCol.buttons?.length ?? 0) <= 2;
+  //   }));
+  // }
 
 
   public onButtonClick(action: (row: any) => void, row: any) {
     action(row);
   }
 
-  public changeViewActions(index: number): void {
-    this.showAction.update(actions => {
-      const updated = [...actions];
-      updated[index] = !updated[index];
-      return updated;
-    });
+  public cellClassHeader(column: TableColumn): string {
+    return column.cellClass ? column.cellClass : '';
   }
 
-  public getVisibleButtonsCount(element: any): number {
-    const buttonColumn = this.buttonColumn();
-    if (!buttonColumn) return 0;
-    return buttonColumn.buttons.filter(button => button.show(element)).length;
-  }
+  // public changeViewActions(index: number): void {
+  //   this.showAction.update(actions => {
+  //     const updated = [...actions];
+  //     updated[index] = !updated[index];
+  //     return updated;
+  //   });
+  // }
 
   public setFilter(filter: string): void {
     this.tableDataSource().filter = filter.trim().toLowerCase();
