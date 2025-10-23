@@ -16,7 +16,7 @@ import { ActionButton } from '../table/table.interface';
   ],
   templateUrl: './action-button.component.html',
   styleUrl: './action-button.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionButtonComponent {
 
@@ -34,19 +34,10 @@ export class ActionButtonComponent {
     const btn = this.button();
     const row = this.element();
 
-    if (typeof btn.svgIcon === 'function') {
-      return { svg: btn.svgIcon(row) };
-    }
     if (typeof btn.icon === 'function') {
       return { icon: btn.icon(row) };
     }
     return { icon: '' };
-  }
-
-  shouldShow(): boolean {
-    const btn = this.button();
-    const row = this.element();
-    return btn.show(row)
   }
 
   getLabel(): string {

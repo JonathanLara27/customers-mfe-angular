@@ -1,12 +1,6 @@
-@if (shouldShow()) {
 <div class="d-flex justify-content-center">
     <button mat-icon-button [matTooltip]="getLabel()" [ngClass]="getButtonClass()" [disabled]="isLoading()"
         (click)="onClick()">
-        @if (getIconType().svg) {
-        <mat-icon [svgIcon]="getIconType().svg!"></mat-icon>
-        } @else {
         <mat-icon>{{ getIconType().icon }}</mat-icon>
-        }
     </button>
 </div>
-}
