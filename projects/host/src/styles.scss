@@ -1,22 +1,233 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @include mat.core();
-// Define the theme object.
-$front-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-      // primary: $_primary,
-      // tertiary: $_tertiary,
+
+// Define the theme object
+$front-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
       primary: mat.$azure-palette,
       tertiary: mat.$red-palette,
-      // warn: mat.$red-palette,
-  ),
-  density: (
-    scale: 0,
+    ),
+    density: (
+      scale: 0
+    )
   )
-));
+);
 
 :root {
   @include mat.all-component-themes($front-theme);
 }
 
+/* ================================
+   General App Styles
+================================ */
+
+/* Typography */
+.h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.h5 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.text-md {
+  font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 300;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Font weights */
+.fw-500 {
+  font-weight: 500;
+}
+
+/* Display utilities */
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-responsive {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 440px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    button,
+    div {
+      margin-left: 0;
+    }
+
+    mat-form-field,
+    button {
+      width: 100%;
+    }
+  }
+}
+
+/* Flex alignment */
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-start {
+  justify-content: start;
+}
+
+/* Spacing utilities (margin/padding) */
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.ml-4 {
+  margin-left: 1.5rem;
+}
+
+.mr-4 {
+  margin-right: 1.5rem;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+.pt-4 {
+  padding-top: 1.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1.5rem;
+}
+
+.pl-3 {
+  padding-left: 1rem;
+}
+
+.pr-3 {
+  padding-right: 1rem;
+}
+
+.pl-5 {
+  padding-left: 3rem;
+}
+
+.pr-5 {
+  padding-right: 3rem;
+}
+
+/* Position and layout */
+.position-relative {
+  position: relative;
+}
+
+.border-radius-20 {
+  border-radius: 20px !important;
+}
+
+/* Backgrounds */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-gray-100 {
+  background-color: #f5f5f5;
+}
+
+/* Components */
+.grid-item {
+  padding: 10px;
+}
+
+.table-floating-btn {
+  position: absolute;
+  top: -1.5rem;
+  right: -0.5rem;
+  z-index: 999 !important;
+
+  @media (max-width: 440px) {
+    top: -0.5rem;
+  }
+}
+
+.toggle-view-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.container-page {
+  height: 87vh;
+
+  @media (max-height: 880px) {
+    height: 86vh;
+  }
+
+  @media (max-height: 837px) {
+    height: 82vh;
+  }
+}
+
+/* Material overrides */
+.mat-elevation-z8 {
+  box-shadow: 
+    0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* Buttons */
+.button-primary {
+  background-color: #E73743 !important;
+  color: white !important;
+
+  &:disabled {
+    background-color: #F5A6AC !important;
+    color: #ffffff80 !important;
+    cursor: not-allowed !important;
+    opacity: 0.65 !important;
+  }
+}
