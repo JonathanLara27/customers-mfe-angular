@@ -149,6 +149,80 @@ Esto arrancará el mock en `http://localhost:3000` y aplicará un delay por defe
 
 ---
 
+
+# 🧪 Tests en Customers MFE
+
+Este microfrontend (`customers-mfe`) incluye **tests unitarios** y **tests de integración** para asegurar el correcto funcionamiento de los componentes y servicios principales del módulo.
+
+---
+
+## ⚙️ Ejecución de Tests
+
+Para ejecutar los tests de este microfrontend:
+
+```bash
+cd projects/customers-mfe
+ng test customers-mfe
+```
+
+Esto abrirá el navegador (por defecto **Chrome**) y ejecutará los casos definidos en los archivos `*.spec.ts`.
+
+---
+
+## 🧩 Tipos de Tests Implementados
+
+### ✅ 1. Test unitario — `AuthService`
+
+**Ubicación:**  
+`src/app/core/auth/auth.service.spec.ts`
+
+**Objetivo:**  
+Verificar el comportamiento del servicio de autenticación simulado (`AuthService`), que controla el estado de sesión mediante señales reactivas (`signal`).
+
+**Casos de prueba incluidos:**
+- Verificar que el usuario inicialmente **no esté autenticado**.
+- Cambiar el estado al llamar a `login()`.
+- Restaurar el estado original al llamar a `logout()`.
+
+---
+
+### 🧠 2. Test de integración — `UpsertCustomerDialogComponent`
+
+**Ubicación:**  
+`src/app/components/upsert-customer-dialog/upsert-customer-dialog.component.spec.ts`
+
+**Objetivo:**  
+Probar la interacción completa entre el **componente**, su **servicio**, y el **sistema de formularios reactivos**.
+
+**Casos de prueba incluidos:**
+- El componente se crea correctamente y se inicializa con datos simulados (`MAT_DIALOG_DATA`).
+- El formulario se marca como inválido cuando un campo requerido está vacío.
+- La función `submitForm()` envía correctamente los datos esperados y cierra el diálogo.
+- El método `resetForm()` del servicio limpia el formulario correctamente.
+
+---
+
+## 🧭 Buenas prácticas aplicadas
+
+- Uso de `waitForAsync` y `compileComponents()` para inicializar componentes standalone.
+- Simulación de dependencias de Angular Material (`MatDialogRef`, `MAT_DIALOG_DATA`).
+- Pruebas unitarias aisladas (AuthService) y de integración (UpsertCustomerDialogComponent).
+- Validaciones de formularios reactivas (`ReactiveFormsModule`).
+
+---
+
+## 📋 Resumen
+
+| Tipo de Test        | Archivo / Ubicación                                                                 | Propósito Principal |
+|----------------------|-------------------------------------------------------------------------------------|---------------------|
+| 🧪 Unitario          | `auth.service.spec.ts`                                                              | Validar el flujo de login/logout del servicio de autenticación simulado |
+| 🔗 Integración       | `upsert-customer-dialog.component.spec.ts`                                          | Validar interacción del componente de formulario con su servicio y Material Dialog |
+
+---
+
+> ✅ Estos tests aseguran que tanto la lógica de negocio (servicios) como la experiencia de usuario (componentes) funcionen correctamente en el MFE.
+
+
 ## 👨‍💻 Autor
 
 **Jonathan Lara**  
