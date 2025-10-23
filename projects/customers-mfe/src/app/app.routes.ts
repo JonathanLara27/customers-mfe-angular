@@ -1,16 +1,18 @@
 import { Routes } from '@angular/router';
+import { loginGuard } from './core/guards/login.guard';
 
 export const routes: Routes = [
     {
-        path: '',
-        loadComponent: () => import('./pages/customer-list/customer-list.component').then(m => m.CustomerListComponent)
+        path: 'table',
+        loadComponent: () => import('./pages/customer-table/customer-table.component')
     },
     {
-        path: 'create',
-        loadComponent: () => import('./pages/customer-form/customer-form.component').then(m => m.CustomerFormComponent)
+        path: 'list',
+        loadComponent: () => import('./pages/customer-list/customer-list.component'),
+        canActivate: [loginGuard]
     },
     {
         path: '**',
-        redirectTo: ''
+        redirectTo: 'table'
     }
 ];
